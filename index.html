@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELVORA — Journeys, Curated.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Small fixes layered on top of the existing design */
+      .hero-slide:nth-child(2) { background-image: url('hanoi-pagoda.png'); }
+      .links a { font-size: 14px; font-weight: 500; }
+      .auth-card { position: fixed; z-index: 10; top: 50%; right: 50%; width: min(390px, 90vw); padding: 28px; opacity: 0; pointer-events: none; transform: translate(50%, -48%) scale(.96); transition: .25s; }
+      .auth-card.open { opacity: 1; pointer-events: auto; transform: translate(50%, -50%) scale(1); }
+      .auth-card::before { position: fixed; z-index: -1; inset: -100vmax; content: ''; background: #06101299; }
+      .close-login { position: absolute; top: 8px; right: 12px; border: 0; color: white; background: none; font-size: 24px; cursor: pointer; }
+      .tabs button { font-size: 12px; }.auth-card form > label { height: 42px; font-size: 12px; }.auth-card input { font-size: 12px; }.submit { height: 38px; font-size: 12px; }.social { height: 37px; font-size: 10px; }.guest { font-size: 9px; }
+    </style>
+    <style>
+      /* Responsive polish and subtle motion */
+      body { animation: page-in .65s ease both; }
+      .hero-copy { animation: rise-in .9s .15s both; }
+      nav { animation: drop-in .7s ease both; }
+      .primary, .play, .watch, .nav-icons button, .places button { transition: transform .25s ease, opacity .25s ease, background .25s ease; }
+      .primary:hover, .play:hover { transform: translateY(-3px); }
+      .watch:hover { opacity: .7; }.places li:hover { transform: translateX(-4px); }
+      @keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+      @keyframes rise-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+      @keyframes drop-in { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+      @media (max-width: 900px) { nav { gap: 16px; padding: 14px 5%; }.links { gap: 16px; }.links a { font-size: 12px; }.hero-copy { left: 7%; }.auth-card { width: min(370px, 90vw); } }
+      @media (max-width: 700px) { .menu-button { display: block; }.links { position: absolute; top: 64px; left: 0; right: 0; display: none; flex-direction: column; align-items: flex-start; gap: 18px; padding: 24px 7%; background: #0b1418f2; }.links.open { display: flex; animation: rise-in .3s ease both; }.links .selected:after { bottom: -6px; }.nav-icons { margin-left: auto; }.hero-copy { top: 22%; }.places { display: block; right: 7%; bottom: 15px; }.auth-card { padding: 24px; } }
+      @media (max-width: 480px) { .brand { font-size: 17px; }.brand small { font-size: 5px; }.hero h1 { font-size: clamp(42px, 14vw, 57px); }.subtitle { font-size: 15px; }.actions { flex-wrap: wrap; }.primary { padding: 13px 17px; }.location, blockquote { display: none; }.places { font-size: 9px; }.nav-icons > button:not(.sign-in) { display: none; } }
+      @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+    </style>
+  <style>.elvora-brand{width:130px!important;height:60px!important;flex:0 0 130px!important;background:url('elvora-logo.png') center 52%/260px auto no-repeat!important}.elvora-brand:after{display:none!important}.elvora-brand>*{display:none!important}</style><style>.elvora-brand,.logo{width:150px!important;height:68px!important;flex:0 0 150px!important;background:url('elvora-logo.png') center 52%/150px auto no-repeat!important}.elvora-brand:after{display:none!important}.elvora-brand>*{display:none!important}@media(min-width:761px){nav{height:74px!important;padding:0 7%!important}.links{margin-left:62px!important;gap:38px!important}.links a{font-size:16px!important;padding:27px 0 13px!important}.signin,.sign{padding:10px 26px!important;font-size:12px!important}}</style></head>
+  <body>
+    <main class="hero">
+      <div class="hero-slides" aria-hidden="true">
+        <div class="hero-slide active"></div>
+        <div class="hero-slide"></div>
+        <div class="hero-slide"></div>
+        <div class="hero-slide"></div>
+      </div>
+      <div class="backdrop"></div>
+      <nav>
+        <a class="brand elvora-brand" href="index.html" aria-label="ELVORA home"></a>
+        <button class="menu-button" aria-label="Open menu">☰</button>
+        <div class="links">
+          <a class="selected" href="#">Home</a><a href="destinations.html">Destinations</a><a href="packages.html">Packages</a><a href="#">About</a>
+        </div>
+        <div class="nav-icons"><button class="sign-in">Sign In</button></div>
+      </nav>
+      <section class="hero-copy">
+        <p class="kicker">EXPLORE · EXPERIENCE · BELONG</p>
+        <h1>A LAND OF <em>DRAGONS</em><br />AND DREAMS</h1>
+        <p class="subtitle">Ancient heritage. Breathtaking landscapes.<br />Discover the soul of Vietnam with ELVORA.</p>
+        <div class="actions"><a href="#" class="primary">Explore Vietnam <span>→</span></a><button class="play"><i>▶</i></button><a href="about.html" class="watch">Watch Our Story</a></div>
+      </section>
+      <div class="location"><b>●</b><div><strong>Ha Long Bay</strong><small>Quang Ninh Province</small></div></div>
+      <blockquote>“Not just a destination,<br />but a feeling.”</blockquote>
+      <ol class="places" aria-label="Choose a destination slide">
+        <li class="current"><button type="button">Ha Long Bay</button></li>
+        <li><button type="button">Hanoi</button></li>
+        <li><button type="button">Hoi An</button></li>
+        <li><button type="button">Da Nang</button></li>
+      </ol>
+      <aside class="auth-card">
+        <button class="close-login" type="button" aria-label="Close sign in">×</button>
+        <div class="tabs"><button class="active">Sign In</button><button>Create Account</button></div>
+        <form id="loginForm">
+          <label><span>✉</span><input type="email" placeholder="Email" required /></label>
+          <label><span>♙</span><input type="password" placeholder="Password" required /></label>
+          <div class="form-row"><label class="remember"><input type="checkbox" checked /> Remember me</label><a href="#">Forgot password?</a></div>
+          <button class="submit">Sign In</button>
+        </form>
+        <p class="or">OR</p>
+        <button class="social google"><b>G</b> Continue with Google</button>
+        <button class="social"><b>●</b> Continue with Apple</button>
+        <button class="guest">Continue as Guest</button>
+      </aside>
+    </main>
+    <script src="app.js"></script>
+    <script>
+      document.title = 'ELVORA — Journeys, Curated.';
+      document.querySelectorAll('.links a').forEach((link) => {
+        if (link.textContent.trim() === 'About') link.href = 'about.html';
+      });
+      document.querySelector('.subtitle').innerHTML = 'Ancient heritage. Breathtaking landscapes.<br>Discover the soul of Vietnam with ELVORA.';
+    </script>
+  </body>
+</html>
